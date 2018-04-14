@@ -19,7 +19,7 @@ int fputs(const char*str,FILE*stream)
 
 #define va_list char*
 #define va_start(ap,arg) (ap=(va_list)&arg+sizeof(arg))
-#define va_arg(ap,t) (*(t*)((ap+sizeof(t))-sizeof(t)))
+#define va_arg(ap,t) (*(t*)((ap+=sizeof(t))-sizeof(t)))
 #define va_end(ap)  (ap=(va_list)0)
 
 int vfprintf(FILE*stream,const char*format,va_list arglist)
@@ -87,15 +87,15 @@ int vfprintf(FILE*stream,const char*format,va_list arglist)
 int printf(const char* format,...)
 {
     va_list(arglist);
-	va_start(arglist,format);
-	return vfprintf(stdout,format,arglist);
+    va_start(arglist,format);
+    return vfprintf(stdout,format,arglist);
 }
 
 int fprintf(FILE* stream,const char*format,...)
 {
     va_list(arglist);
-	va_start(arglist,format);
-	return vfprintf(stream,format,arglist);
+    va_start(arglist,format);
+    return vfprintf(stream,format,arglist);
 }
 
 
