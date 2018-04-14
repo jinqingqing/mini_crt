@@ -12,7 +12,7 @@ static void crt_fatal_error(const char* msg)
 
 void mini_crt_entry(void)
 {
-    int argc;
+        int argc;
 	char** argv;
 	char* ebp_reg = 0;
 	int ret;
